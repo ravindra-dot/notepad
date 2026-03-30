@@ -78,5 +78,4 @@ function initializeTheme() {
 
 
 themeToggle.addEventListener('click', initializeTheme);
-
 document.getElementById("save-button").addEventListener("click", saveTextAsFile);

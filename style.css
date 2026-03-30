@@ -46,7 +46,7 @@
 
 [data-bs-theme="dark"] #textarea1 {
     background-color: #252525 !important;
-    color: #ffffff !important;
+    color: #ffffff
 }
 
 /* Subtle hover effect for Dark Mode */
