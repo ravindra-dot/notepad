@@ -2,7 +2,7 @@
 
 ## Overview
 
-This Notepad Webpage is a collaborative project created by [Your Name] and [Friend's Name] using HTML, CSS, and JavaScript. It provides a simple and intuitive platform for note-taking, designed with the help of the SPCK editor.
+This Notepad Webpage is a collaborative project created by Ravindra and Girish using HTML, CSS, and JavaScript. It provides a simple and intuitive platform for note-taking, designed with the help of the SPCK editor.
 
 ## Features
 
@@ -14,7 +14,7 @@ This Notepad Webpage is a collaborative project created by [Your Name] and [Frie
 
 1. **Clone Repository:**
    ```bash
-   git clone [repository_url]
+   git clone https://github.com/ravindra-dot/notepad.git
    ```
 
 2. **Open in Browser:**
