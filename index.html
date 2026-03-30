@@ -1,88 +1,92 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" data-bs-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous"> -->
-    <!-- fontawesome cdn For Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
-        integrity="sha512-PgQMlq+nqFLV4ylk1gwUOgm6CtIIXkKwaIHp/PAIWHzig/lKZSEGKEysh0TCVbHJXCLN7WetD8TFecIky75ZfQ=="
-        crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-    <link rel="stylesheet" href="style.css" class="css">
-    <title>Text Editor</title>
+    <title>NotePad | Editor</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
-    <section class="">
-      <div style="border: 2px solid gray;" >
-        <div class="flax-box">
-            <div class="row">
-                <div class="col">
-                    <button type="button" onclick="f1()" class="btn shadow-sm" title="Bold Text">B</button>
+<body class="bg-light d-flex flex-column min-vh-100">
 
-                    <button type="button" onclick="f2()" class="btn shadow-sm" title="Italic Text"><i>I</i></button>
+    <main class="container my-4">
+        <div class="card shadow-sm">
+            <div class="card-header bg-white py-3">
+                <div class="d-flex flex-wrap gap-2 align-items-center justify-content-center justify-content-md-start">
 
-                    <button type="button" onclick="f3()" class="btn shadow-sm" title="Left Align"> <i
-                            class="fas fa-align-left"></i></button>
+                    <div class="btn-group">
+                        <button onclick="f1()" class="btn btn-outline-secondary rounded-circle ms-1"
+                            title="Bold"><b>B</b></button>
+                        <button onclick="f2()" class="btn btn-outline-secondary rounded-circle ms-1"
+                            title="Italic"><i>I</i></button>
+                    </div>
 
-                    <button type="button" onclick="f4()" class="btn shadow-sm" title="Center Align"> <i
-                            class="fas fa-align-center"></i></button>
+                    <div class="btn-group border-start ps-2">
+                        <button onclick="f3()" class="btn btn-outline-secondary"><i
+                                class="fas fa-align-left"></i></button>
+                        <button onclick="f4()" class="btn btn-outline-secondary"><i
+                                class="fas fa-align-center"></i></button>
+                        <button onclick="f5()" class="btn btn-outline-secondary"><i
+                                class="fas fa-align-right"></i></button>
+                    </div>
 
-                    <button type="button" onclick="f5()" class="btn shadow-sm" title="Right Align"><i
-                            class="fas fa-align-right"></i></button>
+                    <div class="btn-group border-start ps-2">
+                        <button onclick="f6()" class="btn btn-sm btn-outline-dark">AB</button>
+                        <button onclick="f7()" class="btn btn-sm btn-outline-dark">ab</button>
+                        <button onclick="f8()" class="btn btn-sm btn-outline-dark">Ab</button>
+                    </div>
 
-                    <button type="button" onclick="f6()" class="btn shadow-sm" title="Uppercase Text">AB</button>
+                    <div class="d-flex align-items-center border-start ps-2 gap-2">
+                        <button onclick="f9()" class="btn btn-outline-danger btn-sm" title="Clear"><i
+                                class="fas fa-eraser"></i></button>
+                        <input type="color" id="colorPicker" onchange="changeColor()"
+                            class="form-control form-control-color p-1" title="Color">
+                        <label for="fileInput" class="btn btn-outline-primary btn-sm mb-0">
+                            <i class="fas fa-upload"></i>
+                            <input type="file" id="fileInput" accept=".txt" hidden>
+                        </label>
+                    </div>
 
-                    <button type="button" onclick="f7()" class="btn shadow-sm" title="Lowercase Text">ab</button>
+                    <div class="btn-group border-start ps-2">
+                        <button type="button" id="darkModeToggle"
+                            class="btn btn-outline-secondary d-flex align-items-center justify-content-center"
+                            title="Toggle Dark Mode" style="width: 40px; height: 40px; border-radius: 50%;">
+                            <i class="fas fa-moon" id="themeIcon"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
 
-                    <button type="button" onclick="f8()" class="btn shadow-sm" title="Capitalize Text">Ab</button>
-                    
-                      <button type="button" onclick="f9()" class="btn shadow-sm side" title="Tooltip on top"><i
-                            class="fas fab fa-eraser"></i></button>
-                   
-                     
-                      <input type="color" id="colorPicker" value="#ff0000" onclick="changeColor()" >
-                     
-    
-    
-                  
-                  
-                        <label for="fileInput">
-                        <span><i style="font-size:24px" class="fa">&#xf093;</i>
-                       </label>
-                      <input type="file" id="fileInput" accept=".txt">  
+            <div class="card-body p-0">
+                <textarea id="textarea1" class="form-control border-0 rounded-0 p-4" rows="15"
+                    placeholder="Start typing..."></textarea>
+            </div>
 
+            <div class="card-footer bg-white py-3">
+                <div class="row g-3 align-items-center">
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <input type="text" id="filename" class="form-control" placeholder="filename.txt">
+                            <button id="save-button" class="btn btn-primary">Save File</button>
+                        </div>
+                    </div>
+                    <div class="col-md-6 text-center text-md-end">
+                        <button class="btn btn-link text-decoration-none p-0">
+                            <a id="download-link" style="display: none" download>Download Ready</a>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
-        </div>
-        <br>
-        <div style="border: 2px solid gray;">
-        
-        <div class="row">
-            <div class="flex-box">
-            
-                <textarea id="textarea1" class="input shadow" name="name" rows="17" cols="00"
-                    placeholder="Your text here ..."></textarea>
-            </div>
-          
-          <div class="save-options">
-                <input type="text" id="filename" placeholder="Enter filename">
-                <button id="save-button">Save</button>
-                <button class="download"><a id="download-link" style="display: none" download="downloaded.txt">Download</a></button>
+    </main>
 
-            </div>
-        </div>
-        </div>
-      
-        <footer>
-            When in doubt, edit it out.
-        </footer>
-    </section>
+    <footer class="mt-auto py-4 text-center text-muted border-top bg-white">
+        <small class="fst-italic">"When in doubt, edit it out."</small>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
 </body>
 

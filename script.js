@@ -1,117 +1,82 @@
-function f1() {
-  //function to make the text bold using DOM method
-  document.getElementById("textarea1").style.fontWeight = "bold";
-}
+const editor = document.getElementById("textarea1");
 
-function f2() {
-  //function to make the text italic using DOM method
-  document.getElementById("textarea1").style.fontStyle = "italic";
-}
+// --- Formatting Functions ---
+const f1 = () => editor.style.fontWeight = "bold";
+const f2 = () => editor.style.fontStyle = "italic";
+const f3 = () => editor.style.textAlign = "left";
+const f4 = () => editor.style.textAlign = "center";
+const f5 = () => editor.style.textAlign = "right";
+const f6 = () => editor.style.textTransform = "uppercase";
+const f7 = () => editor.style.textTransform = "lowercase";
+const f8 = () => editor.style.textTransform = "capitalize";
 
-function f3() {
-  //function to make the text alignment left using DOM method
-  document.getElementById("textarea1").style.textAlign = "left";
-}
-
-function f4() {
-  //function to make the text alignment center using DOM method
-  document.getElementById("textarea1").style.textAlign = "center";
-}
-
-function f5() {
-  //function to make the text alignment right using DOM method
-  document.getElementById("textarea1").style.textAlign = "right";
-}
-
-function f6() {
-  //function to make the text in Uppercase using DOM method
-  document.getElementById("textarea1").style.textTransform = "uppercase";
-}
-
-function f7() {
-  //function to make the text in Lowercase using DOM method
-  document.getElementById("textarea1").style.textTransform = "lowercase";
-}
-
-function f8() {
-  //function to make the text capitalize using DOM
-  document.getElementById("textarea1").style.textTransform = "capitalize";
-}
-
+// function f9 renamed to match your HTML call
 function f9() {
-  //function to make the text back to normal by removing all the methods applied
-  //using DOM method
-  document.getElementById("textarea1").style.fontWeight = "normal";
-  document.getElementById("textarea1").style.textAlign = "left";
-  document.getElementById("textarea1").style.fontStyle = "normal";
-  document.getElementById("textarea1").style.textTransform = "capitalize";
-  document.getElementById("textarea1").value = " ";
+    editor.style.fontWeight = "normal";
+    editor.style.textAlign = "left";
+    editor.style.fontStyle = "normal";
+    editor.style.textTransform = "none";
+    editor.style.color = "#000000";
+    editor.value = "";
 }
 
-function f10() {
-  document.getElementById("textareal").style.color = "#000"
+function changeColor() {
+    const selectedColor = document.getElementById("colorPicker").value;
+    editor.style.color = selectedColor;
 }
 
-// Function to select and change text color
-    function changeColor() {
-      var selectedColor = document.getElementById("colorPicker").value;
-    
-      var textArea = document.getElementById("textarea1");
-      textArea.style.color = selectedColor;
-    }
+// --- File Management ---
 
-
-
-// Function to save the text content to a file
 function saveTextAsFile() {
-    const textContent = document.getElementById("textarea1").value;
-    const userFilename = document.getElementById("filename").value || "downloaded";
+    const textContent = editor.value;
+    const userFilename = document.getElementById("filename").value || "notepad-export";
 
     const blob = new Blob([textContent], { type: "text/plain" });
     const url = window.URL.createObjectURL(blob);
 
-    // Update the download link
     const downloadLink = document.getElementById("download-link");
     downloadLink.href = url;
-    downloadLink.download = userFilename;
-    downloadLink.style.display = "block";
+    downloadLink.download = `${userFilename}.txt`;
+    downloadLink.click();
+    
+    window.URL.revokeObjectURL(url);
 }
 
-// Function to clear formatting and text
- function clearFormatting() {
-     document.getElementById("textarea1").style.fontWeight = "normal";
-     document.getElementById("textarea1").style.textAlign = "left";
-     document.getElementById("textarea1").style.fontStyle = "normal";
-     document.getElementById("textarea1").style.textTransform = "capitalize";
-    document.getElementById("textarea1").value = " ";
- }
+document.getElementById('fileInput').addEventListener('change', function(event) {
+    const file = event.target.files; 
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            editor.value = e.target.result;
+        };
+        reader.readAsText(file);
+    }
+});
 
-// Call the saveTextAsFile function when the "Save" button is clicked
+const themeToggle = document.getElementById('darkModeToggle');
+const themeIcon = document.getElementById('themeIcon');
+const bodyElement = document.documentElement;
+
+function initializeTheme() {
+    const currentTheme = bodyElement.getAttribute('data-bs-theme') || 'light';
+    
+    if (currentTheme === 'dark') {
+        bodyElement.setAttribute('data-bs-theme', 'light');
+        themeIcon.classList.replace('fa-sun', 'fa-moon');
+        themeToggle.classList.replace('btn-outline-warning', 'btn-outline-secondary');
+    } else {
+        bodyElement.setAttribute('data-bs-theme', 'dark');
+        themeIcon.classList.replace('fa-moon', 'fa-sun');
+        
+        if (themeToggle.classList.contains('btn-outline-secondary')) {
+            themeToggle.classList.replace('btn-outline-secondary', 'btn-outline-warning');
+        } else {
+            themeToggle.classList.add('btn-outline-warning');
+        }
+    }
+}
+
+
+themeToggle.addEventListener('click', initializeTheme);
+
 document.getElementById("save-button").addEventListener("click", saveTextAsFile);
-
-
-// To upload and edit text file from divice
-let selectedFile;
-
-        document.getElementById('fileInput').addEventListener('change', handleFileSelect);
-
-        function handleFileSelect(event) {
-            const fileInput = event.target;
-            selectedFile = fileInput.files[0];
-
-            if (selectedFile) {
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    document.getElementById('textarea1').value = e.target.result;
-                };
-                reader.readAsText(selectedFile);
-            }
-        }
-
-        function enableEditing() {
-            document.getElementById('textarea1').readOnly = false;
-        }
-
-
-
-
