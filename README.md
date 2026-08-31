@@ -16,7 +16,6 @@ This Notepad Webpage is a collaborative project created by Ravindra and Girish u
    ```bash
    git clone https://github.com/ravindra-dot/notepad.git
    ```
-
 2. **Open in Browser:**
    - Navigate to the project directory.
    - Open `index.html` in your preferred browser.
@@ -24,7 +23,6 @@ This Notepad Webpage is a collaborative project created by Ravindra and Girish u
 3. **Start Noting:**
    - Create, edit, and save your notes effortlessly.
    - Explore SPCK editor features for enhanced collaboration.
-
 ## Technologies Used
 
 - **HTML:** Structuring the webpage.
